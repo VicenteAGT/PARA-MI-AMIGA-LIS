@@ -1,0 +1,188 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #df8910;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    overflow-x: hidden; /* Evita desplazamientos horizontales */
+}
+
+/* Header video */
+#header-video {
+    width: 100%;
+    height: 100vh; /* Asegura que el video ocupe el alto total del viewport */
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Header content */
+.header-content {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Main header text */
+.header-content h1 {
+    font-size: clamp(1.5rem, 5vw, 3.5rem); /* Escalado dinámico según el ancho de la pantalla */
+    font-weight: bold;
+    margin: 0 0 20px; /* Espacio inferior */
+    text-align: center;
+    line-height: 1.2; /* Mejora legibilidad en textos largos */
+    max-width: 90%; /* Limita el ancho del texto */
+    word-wrap: break-word; /* Rompe el texto si es necesario */
+}
+
+/* Text that appears after button click */
+#thanks-message {
+    font-size: clamp(1.2rem, 4vw, 2.5rem); /* Ajusté el tamaño máximo a 2.5rem para que sea más pequeño */
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 90%; /* Limita el ancho para que no se expanda */
+    word-wrap: break-word; /* Rompe el texto si es necesario */
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Botones apilados */
+    gap: 10px; /* Espacio entre botones */
+    align-items: center;
+    width: 100%;
+}
+
+/* Button styles */
+.animated-button {
+    background: linear-gradient(45deg, #ff6b6b, #ffd56b);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(255, 215, 107, 0.5);
+    max-width: 90%; /* Botones adaptados al ancho */
+    width: 200px; /* Ancho fijo en móviles */
+    transition: transform 0.2s;
+}
+
+/* Button hover animations */
+.animated-button:hover {
+    transform: scale(1.1);
+}
+
+/* Bouncing animation */
+.animated-button {
+    animation: bounce 2s infinite;
+}
+
+/* Margin glowing animation */
+.animated-button::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd56b);
+    border-radius: 35px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.animated-button:hover::after {
+    opacity: 1;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #header-video {
+        height: auto; /* Permite que el video ajuste su altura */
+    }
+
+    .header-content {
+        height: auto; /* Ajusta la altura al contenido */
+        padding: 10px; /* Reduce el padding */
+    }
+
+    .header-content h1 {
+        font-size: clamp(1.3rem, 4.5vw, 2.5rem); /* Reduce el tamaño del texto en pantallas medianas */
+        margin-bottom: 15px; /* Menos espacio entre elementos */
+        max-width: 80%; /* Limita el ancho aún más */
+    }
+    
+    #thanks-message {
+        display: none; /* Inicialmente oculto */
+        font-size: clamp(1.5rem, 5vw, 3.5rem); /* Tamaño dinámico para el texto */
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+        line-height: 1.5;
+        max-width: 90%; /* Limita el ancho */
+        word-wrap: break-word; /* Rompe el texto si es necesario */
+        opacity: 0; /* Inicialmente oculto */
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .animated-button {
+        font-size: 0.9rem; /* Botones más pequeños */
+        padding: 8px 16px; /* Ajusta padding */
+        width: 180px; /* Ancho fijo más pequeño */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 70px; /* Reduce aún más el padding */
+    }
+
+    .header-content h1 {
+        font-size: clamp(1rem, 3.5vw, 2rem); /* Escalado dinámico para pantallas pequeñas */
+        line-height: 1.1; /* Reduce espacio entre líneas */
+        max-width: 50%; /* Asegura que no se salga del contenedor */
+    }
+
+    #thanks-message {
+        font-size: clamp(1rem, 3.5vw, 1.5rem); /* Hace el texto aún más pequeño */
+        max-width: 100%; /* Limita el ancho para que no se desborde */
+        opacity: 0; /* Asegura que esté oculto inicialmente */
+    }
+
+    .animated-button {
+        font-size: 0.8rem; /* Texto del botón más pequeño */
+        padding: 6px 14px;
+        width: 150px; /* Ajusta ancho para pantallas pequeñas */
+    }
+
+    .button-container {
+        gap: 8px; /* Reduce espacio entre botones */
+    }
+}
